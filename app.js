@@ -1,4 +1,3 @@
-
 // global modules and setup
 const path = require('path');
 const express = require('express');
@@ -18,19 +17,19 @@ app.use(express.static(path.join(__dirname, 'public')));
 // routing 
 app.get("/", function(request, response){
 	response.render('home.hbs',{
-		title: 'urban-wealth'
+		title: 'UrbanWealth'
 	});
 });
 
 app.get("/district", function(request, response){
 	response.render('district.hbs',{
-		title: 'urban-wealth'
+		title: 'UrbanWealth'
 	});
 });
 
 app.get("/event", function(request, response){
 	response.render('event.hbs',{
-		title: 'urban-wealth'
+		title: 'UrbanWealth'
 	});
 });
 
