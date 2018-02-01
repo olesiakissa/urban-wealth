@@ -1,20 +1,14 @@
 @import 'reset.css';
 @import 'home.css';
-@import 'statistic.css';
 
 @font-face {
-    font-family: 'Slim Joe';
-    src: url(../fonts/Slim_Joe.otf);
+    font-family: 'EB Garamond';
+    src: url('../fonts/EBGaramond12-Regular.ttf');
 }
 
 @font-face {
-    font-family: 'Big John';
-    src: url(../fonts/BIG_JOHN.otf);
-}
-
-@font-face {
-    font-family: 'Alcubierre';
-    src: url(../fonts/Alcubierre.otf);
+    font-family: 'Alegreya Sans';
+    src: url('../fonts/Alegreya-Sans-Bold.ttf');
 }
 
 * {
@@ -31,15 +25,11 @@ html {
 body {
 	height: auto;
     min-height: 100%;
-	background: #e6e6e6;
+	background: rgb(246, 245, 245);
 }
 
 div, body, section, header, footer {
     empty-cells: show;
-}
-
-img {
-
 }
 
 a {

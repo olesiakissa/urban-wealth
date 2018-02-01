@@ -1,0 +1,214 @@
+.content {
+    width: 80%;
+    margin: 60px auto 0;
+}
+
+h1, h2, h3 {
+    font-family: 'Alegreya Sans', sans-serif;
+}
+
+h1 {
+    color: rgb(45, 182, 51);
+    font-size: 3.5em;
+}
+
+h2 {
+    color: rgb(0, 0, 0);
+    margin-top: 20px;
+    font-size: 2em;
+}
+
+h3 {
+    color: rgb(0, 0, 0);
+    font-size: 1.5em;
+}
+
+#top-btn {
+    width: 60px;
+    height: auto;
+    display: none;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 99;
+    text-decoration: none;
+    text-align: center;
+    border: none;
+    border-radius: 5%;
+    outline: none;
+    background-color: rgb(139, 195, 74);
+    color: rgb(47, 47, 47);
+    cursor: pointer;
+    padding: 15px;
+    font-family: 'Franklin Gothic Book', serif;
+}
+
+/*region HEADER*/
+nav {
+    margin-top: 30px;
+}
+
+.menu {
+    display: flex;
+    flex-direction: row;
+    margin: 0 auto;
+}
+
+.link {
+    text-decoration: none;
+    text-align: center;
+    font-family: 'EB Garamond', serif;
+    font-size: 1.5em;
+    color: rgb(0, 0, 0);
+    margin: 0 10px;
+}
+
+.link:hover, .details:hover {
+    cursor: pointer;
+    text-shadow: 0 1px 1px rgb(79, 79, 79);
+}
+
+hr {
+    width: 100%;
+    margin: 0.5em auto;
+    color: rgb(51, 51, 51);
+}
+/*endregion*/
+
+/*region MAP BLOCK*/
+#map-container {
+    height: auto;
+}
+
+.map-blocks {
+    width: 100%;
+}
+
+.map-region {
+    width: 33.3333%;
+    height: 50px;
+    margin: 1%;
+    padding: 10px;
+}
+
+.map-region > p {
+    font-family: 'Franklin Gothic Book', serif;
+    font-size: 1.5em;
+}
+
+.yellow {
+    background-color: rgb(242, 225, 83);
+}
+
+.red {
+    background-color: rgb(193, 72, 72);
+}
+
+.green {
+    background-color: rgb(139, 195, 74);
+}
+/*endregion*/
+
+/*region NEWS BLOCK*/
+#news-container {
+    height: auto;
+}
+
+.news-article {
+    margin-top: 2%;
+}
+
+article {
+    margin-top: 2%;
+    font-family: 'Franklin Gothic Book', serif;
+    font-size: 1.2em;
+    user-select: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+}
+
+article p:first-letter {
+    margin-left: 0;
+}
+
+.details {
+    margin-top: 0;
+    float: right;
+}
+/*endregion*/
+
+/*region FOOTER*/
+footer {
+    margin-bottom: 20px;
+}
+
+footer p {
+    font-family: 'EB Garamond', sans-serif;
+    font-size: 1.125em;
+}
+
+.date {
+    font-family: 'Franklin Gothic Book', serif;
+}
+/*endregion*/
+
+/*region MEDIA QUERIES*/
+@media screen and (max-width: 768px) {
+
+    #top-btn {
+        right: 1%;
+    }
+
+    .content {
+        margin: 5px auto;
+    }
+
+    nav {
+        margin-top: 0;
+    }
+
+    .menu {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+    }
+
+    .dot {
+        display: none;
+    }
+
+    .link {
+        flex-basis: 100%;
+        font-size: 1.8em;
+    }
+
+    h2 {
+        margin-top: 1%;
+    }
+
+    .map-blocks {
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        margin-top: 10px;
+    }
+
+    .map-region {
+        flex-basis: 100%;
+    }
+
+    .map-region > p {
+        font-size: 1.3em;
+    }
+
+    .news-article {
+        width: 90%;
+        margin-right: 60px;
+    }
+}
+/*endregion*/
