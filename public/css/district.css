@@ -1,0 +1,96 @@
+/*region REGION BLOCK*/
+#region-info {
+    width: 100%;
+    height: auto;
+    margin-top: 5%;
+}
+
+.problems-blocks {
+    width: 100%;
+}
+
+.problem-post {
+    margin-top: 2%;
+}
+
+#img-container {
+/*    width: 35%; This should be changed to make image responsive */
+    float: left;
+}
+
+#img-container > img {
+    background-color: rgb(45, 182, 51);
+    background-size: cover;
+}
+
+.parameters {
+    margin-left: 2%;
+    width: 40%;
+}
+
+.parameters-item:not(:first-child) {
+    margin-top: 10%;
+}
+
+.parameters-item, .average-value, .submit-btn, .problems-navbar {
+    font-family: 'Franklin Gothic Book', serif;
+    font-size: 1.3em;
+}
+
+.average-value {
+    margin-top: 20%;
+}
+/*endregion*/
+
+.submit-btn {
+    margin-top: 3%;
+    display: inline-block;
+    height: 50px;
+    text-decoration: none;
+    text-align: center;
+    border: none;
+    outline: none;
+    background-color: rgb(45, 182, 51);
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    padding: 15px 32px;
+    font-family: 'Franklin Gothic Book', serif;
+}
+
+.problems-navbar {
+    padding: 0 20px;
+    font-weight: 800;
+}
+
+/*region MEDIA QUERIES*/
+@media screen and (max-width: 768px) {
+
+    #region-info {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+
+    .parameters {
+        order: 1;
+        margin: 0 auto;
+    }
+
+    .parameters-item {
+        flex-basis: 100%;
+        font-size: 1.8em;
+    }
+
+    .average-value, #problems-container {
+        margin-top: 5%;
+    }
+
+    .problems-navbar {
+        font-size: 1.75em;
+        font-weight: 200;
+        letter-spacing: -0.02em;
+        margin-top: 10px;
+    }
+
+}
+/*endregion*/
