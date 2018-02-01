@@ -120,6 +120,7 @@ hr {
 
 article {
     margin-top: 2%;
+    margin-bottom: 5%;
     font-family: 'Franklin Gothic Book', serif;
     font-size: 1.2em;
     user-select: none;
@@ -134,7 +135,12 @@ article p:first-letter {
     margin-left: 0;
 }
 
+.views {
+    margin-left: 0.5%;
+}
+
 .details {
+    color: rgb(0, 0, 0);
     margin-top: 0;
     float: right;
 }
@@ -142,6 +148,7 @@ article p:first-letter {
 
 /*region FOOTER*/
 footer {
+    margin-top: 3%;
     margin-bottom: 20px;
 }
 
