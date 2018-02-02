@@ -3,12 +3,195 @@
 <head>
     <title>{{title}}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta charset="utf-8" />
-    <link rel="stylesheet" type="text/css" href="css/index.css" />
-	<script src="js/jquery-3.2.1.js"></script>
-	<script src="js/core.js"></script>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" type="text/css" href="css/index.css"/>
+    <script src="js/jquery-3.2.1.js"></script>
+    <script src="js/core.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 </head>
 <body>
-	
+<div id="top-btn">Наверх</div>
+<div class="content">
+    {{> header}}
+    <main class="column center">
+        <h2>Название события</h2>
+        <div id="event-info" class="row">
+            <div id="img-container"><img
+                    src="http://clipground.com/images/example-clipart-16.jpg"
+                    alt="Event photo"/></div>
+            <div class="event-details">
+                <div class="details-grid">
+                    <div class="title first-row">Район</div>
+                    <div class="details first-row">Название района</div>
+                    <div class="title second-row">Организатор</div>
+                    <div class="details second-row">Имя организатора</div>
+                    <div class="title third-row">Кол-во людей</div>
+                    <div class="details third-row">123</div>
+                    <div class="title fourth-row description-t">Описание</div>
+                    <div class="details fourth-row description-b">
+                        <p class="description">Идейные соображения высшего порядка, а также сложившаяся структура
+                        организации требуют от нас
+                        анализа новых предложений. Равным образом рамки и место обучения кадров обеспечивает
+                        широкому кругу (специалистов) участие в формировании дальнейших направлений развития.
+                        Повседневная практика показывает, что новая модель организационной деятельности способствует
+                        подготовки и реализации дальнейших направлений развития. С другой стороны дальнейшее
+                        развитие различных форм деятельности позволяет оценить значение новых предложений. Товарищи!
+                        сложившаяся структура организации позволяет выполнять важные задания по разработке
+                        направлений прогрессивного развития.</p></div>
+
+                </div>
+                <!--<ul>
+                    <li class="row space-around align-start">
+                        <p class="event-details-title">Район</p>
+                        <p>Название района</p>
+                    </li>
+                    <li class="row space-around align-start">
+                        <p class="event-details-title">Организатор</p>
+                        <p>Имя организатора</p>
+                    </li>
+                    <li class="row space-around align-start">
+                        <p class="event-details-title">Кол-во людей</p>
+                        <p>123</p>
+                    </li>
+                    <li class="row space-around align-start">
+                        <p class="event-details-title">Описание</p>
+                        <p class="description">Идейные соображения высшего порядка, а также сложившаяся структура
+                            организации требуют от нас
+                            анализа новых предложений. Равным образом рамки и место обучения кадров обеспечивает
+                            широкому кругу (специалистов) участие в формировании дальнейших направлений развития.
+                            Повседневная практика показывает, что новая модель организационной деятельности способствует
+                            подготовки и реализации дальнейших направлений развития. С другой стороны дальнейшее
+                            развитие различных форм деятельности позволяет оценить значение новых предложений. Товарищи!
+                            сложившаяся структура организации позволяет выполнять важные задания по разработке
+                            направлений прогрессивного развития.</p>
+                    </li>
+                </ul>-->
+            </div>
+        </div>
+        <button type="submit" class="enter-btn">Принять участие</button>
+        <div id="more-event-info" class="row space-between align-start">
+            <div id="comments-container">
+                <h3>Комментарии</h3>
+                <hr>
+                <div class="comment column">
+                    <div class="row space-between comment-info">
+                        <p class="author-name">Имя Автора</p>
+                        <p>
+                            <i class="far fa-calendar-alt"></i>
+                            <span class="time">12 Января, 12:30</span>
+                        </p>
+                    </div>
+                    <p class="message">
+                        Значимость этих проблем настолько очевидна, что реализация намеченных плановых заданий играет
+                        важную роль в формировании новых предложений. С другой стороны сложившаяся структура организации
+                        в значительной степени обуславливает создание дальнейших направлений развития. Идейные
+                        соображения высшего порядка, а также сложившаяся структура организации влечет за собой процесс
+                        внедрения и модернизации системы обучения кадров, соответствует насущным потребностям.
+                    </p>
+                </div>
+                <div class="comment column">
+                    <div class="row space-between comment-info">
+                        <p class="author-name">Имя Автора</p>
+                        <p>
+                            <i class="far fa-calendar-alt"></i>
+                            <span class="time">12 Января, 12:30</span>
+                        </p>
+                    </div>
+                    <p class="message">
+                        Значимость этих проблем настолько очевидна, что реализация намеченных плановых заданий играет
+                        важную роль в формировании новых предложений. С другой стороны сложившаяся структура организации
+                        в значительной степени обуславливает создание дальнейших направлений развития. Идейные
+                        соображения высшего порядка, а также сложившаяся структура организации влечет за собой процесс
+                        внедрения и модернизации системы обучения кадров, соответствует насущным потребностям.
+                    </p>
+                </div>
+                <div class="comment column">
+                    <div class="row space-between comment-info">
+                        <p class="author-name">Имя Автора</p>
+                        <p>
+                            <i class="far fa-calendar-alt"></i>
+                            <span class="time">12 Января, 12:30</span>
+                        </p>
+                    </div>
+                    <p class="message">
+                        Значимость этих проблем настолько очевидна, что реализация намеченных плановых заданий играет
+                        важную роль в формировании новых предложений. С другой стороны сложившаяся структура организации
+                        в значительной степени обуславливает создание дальнейших направлений развития. Идейные
+                        соображения высшего порядка, а также сложившаяся структура организации влечет за собой процесс
+                        внедрения и модернизации системы обучения кадров, соответствует насущным потребностям.
+                    </p>
+                </div>
+                <div class="comment column">
+                    <div class="row space-between comment-info">
+                        <p class="author-name">Имя Автора</p>
+                        <p>
+                            <i class="far fa-calendar-alt"></i>
+                            <span class="time">12 Января, 12:30</span>
+                        </p>
+                    </div>
+                    <p class="message">
+                        Значимость этих проблем настолько очевидна, что реализация намеченных плановых заданий играет
+                        важную роль в формировании новых предложений. С другой стороны сложившаяся структура организации
+                        в значительной степени обуславливает создание дальнейших направлений развития. Идейные
+                        соображения высшего порядка, а также сложившаяся структура организации влечет за собой процесс
+                        внедрения и модернизации системы обучения кадров, соответствует насущным потребностям.
+                    </p>
+                </div>
+
+                <h3>Написать комментарий</h3>
+                <form action="/" class="send-comment column center">
+                    <textarea name="comment" id="textarea-comment">
+                    </textarea>
+                    <div class="send-info row space-between center">
+                        <p>Для того, чтобы оставить комментарий
+                            вам надо авторизироваться</p>
+                        <button type="submit" class="submit-btn">Отправить</button>
+                    </div>
+                </form>
+            </div>
+            <div id="participants-container">
+                <h3>Участники</h3>
+                <hr>
+                <div class="participant row space-evenly center">
+                    <div class="photo">
+                    </div>
+                    <p class="name">
+                        Имя участника
+                    </p>
+                </div>
+                <div class="participant row space-evenly center">
+                    <div class="photo">
+                    </div>
+                    <p class="name">
+                        Имя участника
+                    </p>
+                </div>
+                <div class="participant row space-evenly center">
+                    <div class="photo">
+                    </div>
+                    <p class="name">
+                        Имя участника
+                    </p>
+                </div>
+                <div class="participant row space-evenly center">
+                    <div class="photo">
+                    </div>
+                    <p class="name">
+                        Имя участника
+                    </p>
+                </div>
+                <div class="participant row space-evenly center">
+                    <div class="photo">
+                    </div>
+                    <p class="name">
+                        Имя участника
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+    <hr>
+    {{> footer}}
+</div>
 </body>
-<html>
+</html>

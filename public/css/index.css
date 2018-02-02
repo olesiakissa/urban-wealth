@@ -1,6 +1,7 @@
 @import 'reset.css';
 @import 'home.css';
 @import 'district.css';
+@import 'event.css';
 
 @font-face {
     font-family: 'EB Garamond';
@@ -71,9 +72,23 @@ b {
     align-items: center;
 }
 
+.space-between {
+    justify-content: space-between;
+    align-items: center;
+}
+
+.space-around {
+    justify-content: space-between;
+    align-items: center;
+}
+
 .wrap {
     display: flex;
     flex-wrap: wrap;
+}
+
+.align-start{
+    align-items: flex-start;
 }
 
 .block {

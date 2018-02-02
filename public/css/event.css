@@ -1,0 +1,223 @@
+#event-info {
+    font-family: 'Franklin Gothic Book', sans-serif;
+    width: 100%;
+    height: auto;
+    margin-top: 5%;
+}
+
+.event-details {
+    margin-left: 2%;
+    width: 60%;
+}
+
+.event-details-title:not(:first-child) {
+    margin-top: 10%;
+}
+
+.event-details-title {
+    font-weight: 600;
+}
+
+.event-details-title, .enter-btn {
+    font-family: 'Franklin Gothic Book', sans-serif;
+    font-size: 1.3em;
+}
+
+.enter-btn {
+    margin-top: 3%;
+    display: inline-block;
+    height: 50px;
+    text-decoration: none;
+    text-align: center;
+    border: none;
+    outline: none;
+    background-color: rgb(45, 182, 51);
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    padding: 15px 32px;
+}
+
+#more-event-info {
+    margin: 5% 0;
+    width: 100%;
+    font-family: 'Franklin Gothic Book', sans-serif;
+}
+
+#comments-container {
+    width: 70%;
+}
+
+#participants-container {
+    width: 25%;
+}
+
+h3 {
+    text-align: center;
+    font-weight: 800;
+}
+
+.comment {
+    width: 90%;
+    margin: 2.5% auto 2.5% auto;
+}
+
+.author-name, .time {
+    font-weight: 500;
+    font-size: 1.1em;
+    text-shadow: 0 1px 1px rgb(79, 79, 79);
+}
+
+.message {
+    margin-top: 2%;
+}
+
+.comment-info > p:first-letter {
+    margin-left: 0;
+}
+
+.comment > p:first-letter {
+    margin-left: 0;
+}
+
+.send-info > p:first-letter {
+    margin-left: 0;
+}
+
+.participant > p:first-letter {
+    margin-left: 0;
+}
+
+textarea {
+    height: 100px;
+    width: 88%;
+    margin: 2.5% auto 0 auto;
+    padding: 1%;
+    font-family: 'Franklin Gothic Book', sans-serif;
+    resize: none;
+    line-height: 1.2em;
+    text-align: justify;
+    font-size: 1.1em;
+}
+
+textarea > p:first-letter {
+    margin-left: 0;
+}
+
+.send-commend > .submit-btn {
+    align-items: right;
+}
+
+.send-info {
+    width: 90%;
+}
+
+.send-info p {
+    width: 60%;
+    font-weight: 600;
+    text-align: initial;
+}
+
+.participant {
+    margin-bottom: 2.5%;
+}
+
+.photo {
+    width: 30px;
+    height: 30px;
+    background-color: darkgray;
+}
+
+.details > p:first-letter {
+    margin-left: 0;
+}
+
+.details-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 3fr;
+    grid-template-rows: repeat(5, 0.12fr);
+}
+
+.title {
+    grid-column: 1/2;
+    font-family: 'Franklin Gothic Book', sans-serif;
+    font-size: 1.3em;
+    font-weight: 600;
+}
+
+.details {
+    grid-column: 2/2;
+}
+
+.first-row {
+    grid-row: 1/4;
+}
+
+.second-row {
+    grid-row: 2/4;
+}
+
+.third-row {
+    grid-row: 3/4;
+}
+
+.fourth-row {
+    grid-row: 4/4;
+}
+@media screen and (max-width: 768px) {
+   #img-container{
+       margin: 0 auto;
+   }
+
+    #event-info {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+
+    .event-details {
+        order: 1;
+        margin: 5% auto 0 auto;
+    }
+
+    .details-grid{
+        grid-template-columns: 3.5fr 3fr;
+        grid-template-rows: repeat(5, 0.1fr);
+    }
+    #participants-container{
+        order: 1;
+        margin: 5% auto;
+        width:100%;
+    }
+
+    #comments-container{
+        order:2;
+        width:100%;
+        margin: 5% auto;
+    }
+
+    #more-event-info {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+
+    .comment{
+        margin-bottom: 5%;
+    }
+
+    .send-commend{
+        margin-top:5%;
+    }
+
+    .description-t{
+        grid-column-start: 1;
+        grid-column-end: 3;
+        text-align: center;
+    }
+
+    .description-b{
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row: 5;
+    }
+}
