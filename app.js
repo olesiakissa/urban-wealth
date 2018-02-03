@@ -33,6 +33,30 @@ app.get("/event", function(request, response){
 	});
 });
 
+post.get("/problem", function(request, response){
+	//todo problem
+});
+
+post.get("/solution", function(request, response){
+	//todo solution
+});
+
+post.get("/review", function(request, response){
+	//todo review
+});
+
+post.get("/event", function(request, response){
+	//todo event
+});
+
+post.get("/comment", function(request, response){
+	//todo comment
+});
+
+post.get("/subcategory", function(request, response){
+	//todo subcategory
+});
+
 app.get("/stop", function(request, response){
 	console.log(`Server stop listening ${server.address().address}:${server.address().port}`);
 	console.log('Cause: The server has been shut down by the web request');

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8" />
+	<script src="public/js/jquery-3.2.1.js"></script>
+</head>
+<body>
+	<input id="area" type="text"></input>
+	<input id="x" type="text"></input>
+	<input id="y" type="text"></input>
+	<input id="submit" type="submit"></input>
+	<textarea rows="20" cols="30" id="path"type="text" ></textarea>
+</body>
+<script>
+$('#submit').on('click', () => {
+	let x = +$('#x').val();
+	let y = +$('#y').val();
+	let array = $('#area').val().split(',');
+	var minX = 9999;
+	var maxX = 0;
+	var minY = 9999;
+	var maxY = 0;
+	var path = '';
+	for (let i = 0; i < array.length - 1; i += 2) {
+		if (i == 0) {
+			path += `M${+array[i]+x},${+array[i+1]+y} `;
+		} else {
+			path += `L${+array[i]+x},${+array[i+1]+y} `;
+		}
+		if (minX > +array[i]) {
+			minX = +array[i];
+		}
+		if (minY > +array[i+1]) {
+			minY = +array[i+1];
+		}
+		if (maxX < +array[i]) {
+			maxX = +array[i];
+		}
+		if (maxY < +array[i+1]) {
+			maxY = +array[i+1];
+		}
+	}
+	path += `Z\nmaxX=${maxX}\nminX=${minX}\nmaxY=${maxY}\nminY=${minY}`;
+	$('#path').text(path);
+});
+</script>
+</html>
