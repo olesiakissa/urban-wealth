@@ -77,7 +77,34 @@ hr {
 
 /*region MAP BLOCK*/
 #map-container {
+    width: 100%;
     height: auto;
+}
+
+.svg-map {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: 100vh;
+    z-index: 999;
+}
+
+.district-border {
+    z-index: 1000;
+    position: relative;
+    display: inline-block;
+    stroke: rgb(21, 21, 21);
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 6px;
+    fill: rgb(192, 219, 255);
+    transform-origin: 50% 50%;
+}
+
+.district-border:hover {
+    /* transform: scale(1.1125); */
+    fill: rgba(77, 167, 255, 1);
+    z-index: 1001;
 }
 
 .map-blocks {
