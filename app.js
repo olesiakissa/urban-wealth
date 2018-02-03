@@ -5,8 +5,22 @@ const bodyParser = require("body-parser");
 const app = express();
 const jsonParser = bodyParser.json();
 const hbs = require("hbs");
+var dateFormat = require('dateformat');
 app.set('views', __dirname + '/views');
 app.set("view engine", "hbs");
+dateFormat.i18n = {
+    dayNames: [
+        'Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб',
+        'Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'
+    ],
+    monthNames: [
+        'Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек',
+        'Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'
+    ],
+    timeNames: [
+        'a', 'p', 'am', 'pm', 'A', 'P', 'AM', 'PM'
+    ]
+};
 
 // set partials
 hbs.registerPartials(__dirname + "/views/partials");
@@ -175,8 +189,13 @@ app.post("/event", function(request, response){
 	//todo event
 });
 
-app.post("/comment", function(request, response){
-	//todo comment
+app.post("/comment", jsonParser, function(request, response){
+    var date = dateFormat(new Date(Date.now()), "mmmm dd, yyyy, HH:MM");
+    response.render('partials/comment.hbs',{
+        authorName: 'Test',
+        commentTime: date,
+		commentMessage: request.body.comment
+    });
 });
 
 app.post("/subcategory", function(request, response){

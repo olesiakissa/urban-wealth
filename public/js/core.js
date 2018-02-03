@@ -16,22 +16,26 @@ $(document).ready(function () {
 
     $('form').submit(function (e) {
         e.preventDefault();
-                var action = $(this).attr('action');
+        var action = $(this).attr('action');
         var data = {};
-        $('form :input').each(function handleData(){
-            data[$(this).attr('name')]= $(this).val();
+        $('form :input').not(':button').each(function handleData() {
+            data[$(this).attr('name')] = $(this).val();
         });
+       /* if ($('#textarea-comment').length) {
+            data[$(this).attr('name')] = $(this).val();
+        }*/
         var appendPosition = $(this).data('append-position');
-        var appendDiv = $(this).data('div-to-append');
+        var appendDiv = $('#' + $(this).data('div-to-append'));
         console.log(data);
         $.ajax({
             type: 'POST',
             url: action,
             async: true,
             data: JSON.stringify(data),
-            dataType: "json",
+            dataType: "text",
             contentType: "application/json",
             success: function (data) {
+                console.log("success!");
                 if (appendPosition === "start") {
                     appendDiv.prepend(data);
                 }
@@ -42,7 +46,7 @@ $(document).ready(function () {
         });
     });
 
-    $('input[type=radio]').change(function(){
+    $('input[type=radio]').change(function () {
         var targetCombobox = $('select[name=subcategory]');
         $.ajax({
             type: 'POST',
@@ -52,9 +56,10 @@ $(document).ready(function () {
             dataType: "json",
             contentType: "application/json",
             success: function (data) {
-                $.each(data, function(item) {
+                $.each(data, function (item) {
                     options.append($("<option />").val(item.ImageFolderID).text(item.Name));
                 });
             }
-    })
-});
+        })
+    });
+    });

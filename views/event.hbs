@@ -73,6 +73,7 @@
             <div id="comments-container">
                 <h3>Комментарии</h3>
                 <hr>
+            <div id="comments">
                 <div class="comment column">
                     <div class="row space-between comment-info">
                         <p class="author-name">Имя Автора</p>
@@ -121,9 +122,10 @@
                         внедрения и модернизации системы обучения кадров, соответствует насущным потребностям.
                     </p>
                 </div>
-
+            </div>
                 <h3>Написать комментарий</h3>
-                <form action="/" class="send-comment column center">
+                <form action="/comment" method="post" class="send-comment column center"
+                data-append-position="end" data-div-to-append="comments">
                     <textarea name="comment" id="textarea-comment">
                     </textarea>
                     <div class="send-info row space-between center">
