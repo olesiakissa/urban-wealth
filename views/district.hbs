@@ -19,14 +19,9 @@
         <!--REGION BLOCK-->
         <div id="region-info" class="row">
             <div id="img-container" ><img src="http://5zvezd.kiev.ua/wp-content/uploads/2011/06/obolonskiy-rayon-kiev.jpg" alt="Region Photo"/></div>
-                <div class="parameters">
-                    <ul>
-                        <li class="parameters-item"><p>Параметр 1</p></li>
-                        <li class="parameters-item"><p>Параметр 2</p></li>
-                        <li class="parameters-item"><p>Параметр 3</p></li>
-                        <li class="average-value"><p>Средняя оценка</p></li>
-                    </ul>
-                </div>
+                <svg id="graphics" class="parameters">
+                    
+                </svg>
             </div>
         <button type="submit" class="submit-btn">Сообщить о проблеме</button>
         <!--PROBLEMS BLOCK-->
@@ -69,4 +64,115 @@
     {{> footer}}
 </div>
 </body>
+<script>
+;$(document).ready( function () {	
+	$.ajax({
+			type: 'POST',
+			url: '/graphic',
+			async: true,
+			success: (data) => {
+				drawG(data);
+			},
+		});
+	
+function drawG(data) {
+	let delta = 20;
+	
+	var originW = delta*2;
+	var originH = 0;
+	var W = ($('#graphics').width() - 4*delta);
+	var H = ($('#graphics').height() - 2*delta);
+	var stepW = W / data.keys.length;
+	var stepH = H / data.gradation.length;
+	var step = (H - 2*delta) / data.graphics.length;
+	
+	console.log(W);
+	console.log(H);
+	console.log(stepW);
+	console.log(stepH);
+	
+	for (let i = 0; i < data.keys.length; i++){
+		document.getElementById('graphics').appendChild(parseSVG(`<text text-anchor="middle" alignment-baseline="middle"  x="${originW + stepW*i}" y="${delta + H}">${data.keys[i]}</text>`));
+	};
+	
+	for (let i = 0; i < data.gradation.length; i++){
+		document.getElementById('graphics').appendChild(parseSVG(`<text text-anchor="middle" alignment-baseline="middle"  x="${delta/2}" y="${originH + H - stepH*i}">${data.gradation[i]}</text>`));
+		document.getElementById('graphics').appendChild(parseSVG(`<path class="graphic_subline" d="M${originW},${originH + H - stepH*i} l${W - stepW},0"></path>`));
+	};
+	
+	for (let i = 0; i < data.graphics.length; i++){
+		document.getElementById('graphics').appendChild(parseSVG(`<text alignment-baseline="middle" x="${originW + W - stepW + 3.5*delta}" y="${H - 2*delta - step*i}">${data.graphics[i].name}</text>`));
+		document.getElementById('graphics').appendChild(parseSVG(`<path class="graphic_line" d="M${originW + W - stepW + 2*delta},${H - 2*delta - step*i} l${1*delta},0" style="stroke: ${data.graphics[i].color}"></path>`));
+	};
+	
+	id = {
+		counter: 0,
+		current: function() {
+			return 'graphic_item_' + this.counter;
+		},		
+		next: function () {
+			this.counter++;
+		},
+		all: function() {
+			let r_counter = this.counter;
+			let array = [];
+			while (r_counter >= 0) {
+				array.push('graphic_item_' + r_counter);
+				r_counter--;
+			}
+			return array;
+		}
+	};
+	
+	for (let i = 0; i < data.graphics.length; i++){
+		let graphic = data.graphics[i];
+		if (graphic.type == "line") {
+			let line_start = '';
+			let line = '';
+			for (let j = 0; j < graphic.points.length; j++){
+				let point = graphic.points[j];
+				let x = originW + stepW*j;
+				let y = originH + H - (point.value-data.gradation[0])*stepH;
+				document.getElementById('graphics').appendChild(parseSVG(`<circle id="${id.current()}" cx="${x}" cy="${H}" data-cy="${y}" r="3" class="graphic_circle"></circle>`));
+				let color = point.color || graphic.color;
+				if (color !== undefined) {
+					$('#'+id.current()).css('stroke', color).css('fill', color);
+				}
+				id.next();
+				if (j == 0) {
+					line_start += `M${x},${H}`;
+					line += `M${x},${y}`;
+				} else {
+					line_start += `L${x},${H}`;
+					line += `L${x},${y}`;
+				}
+			}
+			document.getElementById('graphics').appendChild(parseSVG(`<path id="${id.current()}" d="${line_start}" data-d="${line}" class="graphic_line"></path>`));
+			if (graphic.color !== undefined) {
+				$('#'+id.current()).css('stroke', graphic.color);
+			}
+			id.next();
+		}
+	};
+	
+	$('circle[data-cy]').each(function(){
+		$(this).animate({cy: $(this).attr('data-cy')}, 500, 'linear');
+		//$(this).attr('cy', $(this).attr('data-cy'));
+	});
+	$('path[data-d]').each(function(){
+		//$(this).animate({d: $(this).attr('data-d')}, 500);
+		$(this).attr('d', $(this).attr('data-d'));
+	});
+	
+	function parseSVG(s) {
+        var div= document.createElementNS('http://www.w3.org/1999/xhtml', 'div');
+        div.innerHTML= '<svg xmlns="http://www.w3.org/2000/svg">'+s+'</svg>';
+        var frag= document.createDocumentFragment();
+        while (div.firstChild.firstChild)
+            frag.appendChild(div.firstChild.firstChild);
+        return frag;
+    }
+}
+});
+</script>
 </html>
