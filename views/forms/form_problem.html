@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="../../public/css/form.css">
+</head>
+<body>
+<form class="contact100-form validate-form">
+				<span class="contact100-form-title">
+					Сообщить о проблеме
+				</span>
+
+    <div class="wrap-input100 validate-input bg1">
+        <span class="label-input100">Название проблемы *</span>
+        <input class="input100" type="text" name="title" placeholder="Заголовок проблемы">
+    </div>
+
+    <div class="wrap-input100 validate-input bg1 rs1-wrap-input100">
+        <span class="label-input100">Описание проблемы *</span>
+        <input class="input100" type="text" name="description" placeholder="Опишите суть проблемы ">
+    </div>
+
+
+    <div class="w-full dis-none js-show-service">
+        <div class="wrap-contact100-form-radio">
+            <span class="label-input100">Укажите категорию проблемы: </span>
+
+            <div class="contact100-form-radio m-t-15">
+                <input class="input-radio100" id="radio1" type="radio" name="criminal" value="criminal" checked="checked">
+                <label class="label-radio100" for="radio1">
+                    Преступность
+                </label>
+            </div>
+
+            <div class="contact100-form-radio">
+                <input class="input-radio100" id="radio2" type="radio" name="administration" value="administration">
+                <label class="label-radio100" for="radio2">
+                    Администрация
+                </label>
+            </div>
+
+            <div class="contact100-form-radio">
+                <input class="input-radio100" id="radio3" type="radio" name="infrastructure" value="infrastructure">
+                <label class="label-radio100" for="radio3">
+                    Инфраструктура
+                </label>
+            </div>
+
+            <div class="contact100-form-radio">
+                <input class="input-radio100" id="radio4" type="radio" name="ecology" value="ecology">
+                <label class="label-radio100" for="radio4">
+                    Экология
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="wrap-input100 input100-select bg1">
+        <span class="label-input100">Укажите подкатегорию *</span>
+        <div>
+            <select class="js-select2" name="subcategory">
+                <option></option>
+                <!--Insert options from db-->
+            </select>
+            <div class="dropDownSelect2"></div>
+        </div>
+    </div>
+
+    <div class="wrap-input100 input100-select bg1">
+        <span class="label-input100">Загрузить фото *</span>
+        <div>
+            <input type="file" id="fileinput" />
+        </div>
+    </div>
+
+    <div class="container-contact100-form-btn">
+        <button class="contact100-form-btn">
+						<span>
+							Отправить
+							<i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+						</span>
+        </button>
+    </div>
+</form>
+</body>
+</html>
