@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const app = express();
 const jsonParser = bodyParser.json();
 const hbs = require("hbs");
+const crud = require(".crud");
 var dateFormat = require('dateformat');
 app.set('views', __dirname + '/views');
 app.set("view engine", "hbs");
