@@ -1,6 +1,7 @@
 $(document).ready(function () {
     console.log('ready');
 
+    //region TOP BUTTON REGION
     $(window).scroll(function () {
         if ($(this).scrollTop() > 100) {
             $('#top-btn').fadeIn();
@@ -13,6 +14,7 @@ $(document).ready(function () {
         $('html, body').animate({scrollTop: 0}, 800);
         return false;
     });
+    //endregion
 
     $('form').submit(function (e) {
         e.preventDefault();
@@ -21,9 +23,9 @@ $(document).ready(function () {
         $('form :input').not(':button').each(function handleData() {
             data[$(this).attr('name')] = $(this).val();
         });
-       /* if ($('#textarea-comment').length) {
-            data[$(this).attr('name')] = $(this).val();
-        }*/
+        /* if ($('#textarea-comment').length) {
+             data[$(this).attr('name')] = $(this).val();
+         }*/
         var appendPosition = $(this).data('append-position');
         var appendDiv = $('#' + $(this).data('div-to-append'));
         console.log(data);
@@ -46,7 +48,7 @@ $(document).ready(function () {
         });
     });
 
-    $('input[type=radio]').change(function () {
+   /* $('input[type=radio]').change(function () {
         var targetCombobox = $('select[name=subcategory]');
         $.ajax({
             type: 'POST',
@@ -61,5 +63,34 @@ $(document).ready(function () {
                 });
             }
         })
+    });*/
+
+    //region MODAL REGION
+    var modal = $('#modal');
+    $('#submit-problem').click(function () {
+        $('#modal-content').load('../forms/form_problem.html');
+        modal.css("display", "block");
     });
+
+    $('#submit-solution').click(function () {
+        $('#modal-content').load('../forms/form_solution.html');
+        modal.css("display", "block");
     });
+
+    $('#submit-review').click(function () {
+        $('#modal-content').load('../forms/form_review.html');
+        modal.css("display", "block");
+    });
+
+    $('#submit-event').click(function () {
+        $('#modal-content').load('../forms/form_event.html');
+        modal.css("display", "block");
+    });
+
+    $('#close-modal').click(function () {
+        modal.css("display", "none");
+    });
+    //endregion
+
+
+});
