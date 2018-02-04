@@ -39,10 +39,11 @@ app.get("/", function (request, response) {
     });
 });
 
-app.get("/district", function (request, response) {
-    response.render('district.hbs', {
-        title: 'UrbanWealth'
-    });
+app.get("/district/:name", function(request, response){
+	response.render('district.hbs',{
+		title: 'UrbanWealth',
+		name: request.params["name"]
+	});
 });
 
 app.post("/graphic", function (request, response) {
