@@ -61,3 +61,39 @@ module.exports.insertUser = function(user){
 		{id: user.id, full_name: user.full_name, email:user.full_name, password:user.full_name }
 	);
 };
+
+module.exports.insertUser = function(user){
+	db.user.insert(
+		{id: user.id, full_name: user.full_name, email:user.full_name, password:user.full_name }
+	);
+};
+
+
+module.export.getAllSubcategoriesOfCategory = function(category){
+    return = db.subcategory.find(
+        {category_id: category.id}
+    );
+};
+
+module.export.getEventsByDistricts = function(district){
+    return = db.event.find(
+        {district_id: district.id}
+    );
+};
+
+module.export.getAllCommentsOfEvent = function(event){
+    return = db.comment.find(
+        {event_id: event.id}
+    );
+};
+
+module.export.getAllDistricts = function(){
+    return = db.district.find();
+};
+
+module.export.getRatingsOfDistrictByDate = function(district, timeLong){
+    return = db.comment.find(
+        {district_id: district.id, date: {$gt: timeLong}}
+    );
+};
+//module.exports.getAllInfoSorted = function(district, problem, )
