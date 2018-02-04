@@ -50,7 +50,8 @@
 
 .parameters {
     margin-left: 2%;
-    width: 40%;
+    width: 120%;
+    height:400px;
 }
 
 .parameters-item:not(:first-child) {

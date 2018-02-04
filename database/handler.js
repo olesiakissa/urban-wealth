@@ -12,7 +12,7 @@ function gen(array, func) {
 var users = generator.generateUsers(amount);
 var reviews = generator.generateReviews(amount);
 var problems = generator.generateProblems(amount);
-var events = generateEvents(amount);
+var events = generator.generateEvents(amount);
 var comments = generator.generateComments(amount, events);
 var rates = generator.generateRates(amount, reviews);
 var solutions = generator.generateSolutions(amount, problems);

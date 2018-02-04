@@ -1,6 +1,6 @@
 .content {
     width: 80%;
-    margin: 60px auto 0;
+    margin: 20px auto 0;
 }
 
 h1, h2, h3 {
@@ -10,6 +10,9 @@ h1, h2, h3 {
 h1 {
     color: rgb(45, 182, 51);
     font-size: 3.5em;
+}
+h1>a{
+    color: rgb(45, 182, 51);
 }
 
 h2 {
@@ -36,8 +39,8 @@ h3 {
     border: none;
     border-radius: 5%;
     outline: none;
-    background-color: rgb(139, 195, 74);
-    color: rgb(47, 47, 47);
+    background-color: rgb(45, 182, 51);
+    color: white;
     cursor: pointer;
     padding: 15px;
     font-family: 'Franklin Gothic Book', serif;
@@ -85,8 +88,9 @@ hr {
     position: relative;
     display: inline-block;
     width: 100%;
-    height: 100vh;
+    height: 140vh;
     z-index: 999;
+    margin-bottom:-11%;
 }
 
 .district-border {

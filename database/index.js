@@ -2,9 +2,9 @@ const mongodb = require("mongodb");
 const  config = require('../config.js');
 
 var url = 'mongodb://'+config.user+':'+config.password+'@'+config.host+':'+config.port+'/'+config.db;
-
+var db;
 module.exports.connectToDb = function (){
-     mongodb.connect(url, function (err, db) {
+     db = mongodb.connect(url, function (err, db) {
         if(!err) {
             console.log('connected');
         }
@@ -46,7 +46,7 @@ module.exports.insertComment = function(comm){
 
 module.exports.insertRate = function(rate){
 	db.rate.insert(
-		{ id: rate.id, eval: rate.eval, eval_ecology: rate.eval_ecology, rate.eval_administration: rate.eval_administration, eval_infrastructure: rate.eval_infrastructure, eval_criminal: rate.eval_criminal, date: rate.date, district_id: rate.district_id, review_id: rate.review_id }
+		{ id: rate.id, eval: rate.eval, eval_ecology: rate.eval_ecology, eval_administration: rate.eval_administration, eval_infrastructure: rate.eval_infrastructure, eval_criminal: rate.eval_criminal, date: rate.date, district_id: rate.district_id, review_id: rate.review_id }
 	)
 };
 
@@ -69,36 +69,36 @@ module.exports.insertUser = function(user){
 };
 
 
-module.export.getAllSubcategoriesOfCategory = function(category){
-    return = db.subcategory.find(
+module.exports.getAllSubcategoriesOfCategory = function(category){
+    return db.subcategory.find(
         {category_id: category.id}
     );
 };
 
-module.export.getEventsByDistricts = function(district){
-    return = db.event.find(
+module.exports.getEventsByDistricts = function(district){
+    return db.event.find(
         {district_id: district.id}
     );
 };
 
-module.export.getAllCommentsOfEvent = function(event){
-    return = db.comment.find(
+module.exports.getAllCommentsOfEvent = function(event){
+    return db.comment.find(
         {event_id: event.id}
     );
 };
 
-module.export.getAllDistricts = function(){
-    return = db.district.find();
+module.exports.getAllDistricts = function(){
+    return db.district.find();
 };
 
-module.export.getRatingsOfDistrictByDate = function(district, timeLong){
-    return = db.comment.find(
+module.exports.getRatingsOfDistrictByDate = function(district, timeLong){
+    return db.comment.find(
         {district_id: district.id, date: {$gt: timeLong}}
     );
 };
 
 module.exports.getAllInfoSorted = function(){
-  return = db.problem.aggregate([
+  return  db.problem.aggregate([
 {
     $lookup: {
             from: "solution",
@@ -145,4 +145,4 @@ module.exports.insertDistrict = function(user){
 		{id: 10, name: 'Darnytsky', svgpath: 'M291,3 L272,0 L212,62 L15,130 L32,165 L7,202 L0,254 L48,329 L48,299 L67,300 L49,271 L104,264 L107,283 L150,272 L149,287 L191,308 L216,285 L202,258 L215,255 L213,230 L224,220 L267,253 L285,247 L317,252 L304,225 L320,224 L325,217 L315,199 L329,189 L423,214 L431,138 L350,108 L320,79 L321,62 L265,31 L291,22 L291,2 L290,2 Z'},
 	);
 };
->>>>>>> b8ff9a0fd0da52a9df42eb3f337fc429e7bda75f
+
