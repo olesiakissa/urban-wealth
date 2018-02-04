@@ -39,6 +39,21 @@ app.get("/", function (request, response) {
     });
 });
 
+app.post("/map", function (request, response) {
+	response.json(
+	[ 	3.4,
+		2.7,
+		3.2,
+		4.3,
+		4.5,
+		3.5,
+		2.3,
+		1.6,
+		2.2,
+		2.8]
+	);
+});
+
 app.get("/district/:name", function(request, response){
 	response.render('district.hbs',{
 		title: 'UrbanWealth',

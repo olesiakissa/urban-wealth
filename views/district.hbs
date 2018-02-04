@@ -18,9 +18,7 @@
         <h2>{{name}}</h2>
         <!--REGION BLOCK-->
         <div id="region-info" class="row">
-            <div id="img-container"><img
-                    src="http://5zvezd.kiev.ua/wp-content/uploads/2011/06/obolonskiy-rayon-kiev.jpg"
-                    alt="Region Photo"/></div>
+            <svg id="img-container" viewBox="-10 -10 500 400" heigth="400px" width="500px"></svg>
             <svg id="graphics" class="parameters">
             </svg>
         </div>
@@ -146,119 +144,134 @@
 </div>
 </body>
 <script>
-    ;$(document).ready(function () {
-        $.ajax({
-            type: 'POST',
-            url: '/graphic',
-            async: true,
-            success: (data) => {
-            drawG(data);
-    },
-    })
-        ;
+;$(document).ready(function () {
+	$.ajax({
+		type: 'POST',
+		url: '/graphic',
+		async: true,
+		success: (data) => {
+		drawG(data);
+},
+})
+	;
 
-        function drawG(data) {
-            let delta = 20;
+	function drawG(data) {
+		let delta = 20;
 
-            var originW = delta * 2;
-            var originH = 0;
-            var W = ($('#graphics').width() - 4 * delta);
-            var H = ($('#graphics').height() - 2 * delta);
-            var stepW = W / data.keys.length;
-            var stepH = H / data.gradation.length;
-            var step = (H - 2 * delta) / data.graphics.length;
+		var originW = delta * 2;
+		var originH = 0;
+		var W = ($('#graphics').width() - 4 * delta);
+		var H = ($('#graphics').height() - 2 * delta);
+		var stepW = W / data.keys.length;
+		var stepH = H / data.gradation.length;
+		var step = (H - 2 * delta) / data.graphics.length;
 
-            console.log(W);
-            console.log(H);
-            console.log(stepW);
-            console.log(stepH);
+		console.log(W);
+		console.log(H);
+		console.log(stepW);
+		console.log(stepH);
 
-            for (let i = 0; i < data.keys.length; i++) {
-                document.getElementById('graphics').appendChild(parseSVG(`<text text-anchor="middle" alignment-baseline="middle"  x="${originW + stepW * i}" y="${delta + H}">${data.keys[i]}</text>`));
-            }
-            ;
+		for (let i = 0; i < data.keys.length; i++) {
+			document.getElementById('graphics').appendChild(parseSVG(`<text text-anchor="middle" alignment-baseline="middle"  x="${originW + stepW * i}" y="${delta + H}">${data.keys[i]}</text>`));
+		}
+		;
 
-            for (let i = 0; i < data.gradation.length; i++) {
-                document.getElementById('graphics').appendChild(parseSVG(`<text text-anchor="middle" alignment-baseline="middle"  x="${delta / 2}" y="${originH + H - stepH * i}">${data.gradation[i]}</text>`));
-                document.getElementById('graphics').appendChild(parseSVG(`<path class="graphic_subline" d="M${originW},${originH + H - stepH * i} l${W - stepW},0"></path>`));
-            }
-            ;
+		for (let i = 0; i < data.gradation.length; i++) {
+			document.getElementById('graphics').appendChild(parseSVG(`<text text-anchor="middle" alignment-baseline="middle"  x="${delta / 2}" y="${originH + H - stepH * i}">${data.gradation[i]}</text>`));
+			document.getElementById('graphics').appendChild(parseSVG(`<path class="graphic_subline" d="M${originW},${originH + H - stepH * i} l${W - stepW},0"></path>`));
+		}
+		;
 
-            for (let i = 0; i < data.graphics.length; i++) {
-                document.getElementById('graphics').appendChild(parseSVG(`<text alignment-baseline="middle" x="${originW + W - stepW + 3.5 * delta}" y="${H - 2 * delta - step * i}">${data.graphics[i].name}</text>`));
-                document.getElementById('graphics').appendChild(parseSVG(`<path class="graphic_line" d="M${originW + W - stepW + 2 * delta},${H - 2 * delta - step * i} l${1 * delta},0" style="stroke: ${data.graphics[i].color}"></path>`));
-            }
-            ;
+		for (let i = 0; i < data.graphics.length; i++) {
+			document.getElementById('graphics').appendChild(parseSVG(`<text alignment-baseline="middle" x="${originW + W - stepW + 3.5 * delta}" y="${H - 2 * delta - step * i}">${data.graphics[i].name}</text>`));
+			document.getElementById('graphics').appendChild(parseSVG(`<path class="graphic_line" d="M${originW + W - stepW + 2 * delta},${H - 2 * delta - step * i} l${1 * delta},0" style="stroke: ${data.graphics[i].color}"></path>`));
+		}
+		;
 
-            id = {
-                counter: 0,
-                current: function () {
-                    return 'graphic_item_' + this.counter;
-                },
-                next: function () {
-                    this.counter++;
-                },
-                all: function () {
-                    let r_counter = this.counter;
-                    let array = [];
-                    while (r_counter >= 0) {
-                        array.push('graphic_item_' + r_counter);
-                        r_counter--;
-                    }
-                    return array;
-                }
-            };
+		id = {
+			counter: 0,
+			current: function () {
+				return 'graphic_item_' + this.counter;
+			},
+			next: function () {
+				this.counter++;
+			},
+			all: function () {
+				let r_counter = this.counter;
+				let array = [];
+				while (r_counter >= 0) {
+					array.push('graphic_item_' + r_counter);
+					r_counter--;
+				}
+				return array;
+			}
+		};
 
-            for (let i = 0; i < data.graphics.length; i++) {
-                let graphic = data.graphics[i];
-                if (graphic.type == "line") {
-                    let line_start = '';
-                    let line = '';
-                    for (let j = 0; j < graphic.points.length; j++) {
-                        let point = graphic.points[j];
-                        let x = originW + stepW * j;
-                        let y = originH + H - (point.value - data.gradation[0]) * stepH;
-                        document.getElementById('graphics').appendChild(parseSVG(`<circle id="${id.current()}" cx="${x}" cy="${H}" data-cy="${y}" r="3" class="graphic_circle"></circle>`));
-                        let color = point.color || graphic.color;
-                        if (color !== undefined) {
-                            $('#' + id.current()).css('stroke', color).css('fill', color);
-                        }
-                        id.next();
-                        if (j == 0) {
-                            line_start += `M${x},${H}`;
-                            line += `M${x},${y}`;
-                        } else {
-                            line_start += `L${x},${H}`;
-                            line += `L${x},${y}`;
-                        }
-                    }
-                    document.getElementById('graphics').appendChild(parseSVG(`<path id="${id.current()}" d="${line_start}" data-d="${line}" class="graphic_line"></path>`));
-                    if (graphic.color !== undefined) {
-                        $('#' + id.current()).css('stroke', graphic.color);
-                    }
-                    id.next();
-                }
-            }
-            ;
+		for (let i = 0; i < data.graphics.length; i++) {
+			let graphic = data.graphics[i];
+			if (graphic.type == "line") {
+				let line_start = '';
+				let line = '';
+				for (let j = 0; j < graphic.points.length; j++) {
+					let point = graphic.points[j];
+					let x = originW + stepW * j;
+					let y = originH + H - (point.value - data.gradation[0]) * stepH;
+					document.getElementById('graphics').appendChild(parseSVG(`<circle id="${id.current()}" cx="${x}" cy="${H}" data-cy="${y}" r="3" class="graphic_circle"></circle>`));
+					let color = point.color || graphic.color;
+					if (color !== undefined) {
+						$('#' + id.current()).css('stroke', color).css('fill', color);
+					}
+					id.next();
+					if (j == 0) {
+						line_start += `M${x},${H}`;
+						line += `M${x},${y}`;
+					} else {
+						line_start += `L${x},${H}`;
+						line += `L${x},${y}`;
+					}
+				}
+				document.getElementById('graphics').appendChild(parseSVG(`<path id="${id.current()}" d="${line_start}" data-d="${line}" class="graphic_line"></path>`));
+				if (graphic.color !== undefined) {
+					$('#' + id.current()).css('stroke', graphic.color);
+				}
+				id.next();
+			}
+		}
+		;
 
-            $('circle[data-cy]').each(function () {
-                $(this).animate({cy: $(this).attr('data-cy')}, 500, 'linear');
-                //$(this).attr('cy', $(this).attr('data-cy'));
-            });
-            $('path[data-d]').each(function () {
-                //$(this).animate({d: $(this).attr('data-d')}, 500);
-                $(this).attr('d', $(this).attr('data-d'));
-            });
-
-            function parseSVG(s) {
-                var div = document.createElementNS('http://www.w3.org/1999/xhtml', 'div');
-                div.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg">' + s + '</svg>';
-                var frag = document.createDocumentFragment();
-                while (div.firstChild.firstChild)
-                    frag.appendChild(div.firstChild.firstChild);
-                return frag;
-            }
-        }
-    });
+		$('circle[data-cy]').each(function () {
+			$(this).animate({cy: $(this).attr('data-cy')}, 500, 'linear');
+			//$(this).attr('cy', $(this).attr('data-cy'));
+		});
+		$('path[data-d]').each(function () {
+			//$(this).animate({d: $(this).attr('data-d')}, 500);
+			$(this).attr('d', $(this).attr('data-d'));
+		});
+	}
+	
+	function parseSVG(s) {
+		var div = document.createElementNS('http://www.w3.org/1999/xhtml', 'div');
+		div.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg">' + s + '</svg>';
+		var frag = document.createDocumentFragment();
+		while (div.firstChild.firstChild)
+		frag.appendChild(div.firstChild.firstChild);
+		return frag;
+	}
+	
+	var districts = {
+		'Svyatoshyn': 'M118,1 L209,81 L209,122 L258,154 L259,226 L285,228 L286,241 L256,264 L282,320 L306,348 L306,362 L281,381 L225,338 L198,292 L196,262 L181,254 L131,265 L72,247 L63,289 L55,301 L31,287 L12,306 L0,287 L18,265 L2,232 L36,193 L24,183 L33,152 L44,150 L59,110 L43,90 L60,63 L68,64 L93,52 L97,33 L116,32 L117,0 L118,1 Z',
+		'Obolonsky': 'M0,83 L109,180 L163,163 L255,156 L249,178 L253,231 L287,257 L299,258 L321,289 L331,268 L393,268 L383,253 L409,243 L393,203 L392,145 L368,108 L341,104 L325,81 L324,57 L311,56 L307,44 L291,44 L290,35 L274,34 L274,11 L129,0 L127,36 L80,32 L26,40 L55,55 L55,62 L77,69 L78,76 L62,76 L56,102 L28,77 L2,82 Z',
+		'Podolsky': 'M1,25 L56,8 L148,0 L142,25 L146,76 L180,102 L193,103 L214,133 L223,113 L285,113 L289,118 L265,159 L270,183 L259,193 L92,142 L50,116 L49,96 L0,65 L1,25 L1,24 L2,24 Z',
+		'Shevchenkovsky':'M1,1 L44,28 L211,79 L195,110 L172,104 L160,109 L132,88 L113,95 L112,79 L29,56 L1,53 L0,0 L1,1 L1,2 L2,3 L1,2 L2,1 L1,0 L2,1 L1,0 Z',
+		'Solomensky': 'M26,152 L52,134 L52,119 L25,90 L0,36 L31,12 L30,0 L114,23 L116,39 L134,31 L180,70 L187,87 L167,106 L182,128 L154,128 L140,155 L123,157 L124,173 L107,169 L92,193 L83,186 L70,199 L26,152 L27,151 L28,152 Z',
+		'Goloseevsky': 'M110,5 L128,23 L135,41 L114,59 L130,81 L102,82 L89,107 L72,110 L73,127 L56,123 L40,145 L30,139 L0,173 L11,188 L11,206 L33,215 L43,198 L78,216 L66,228 L69,267 L84,267 L90,260 L102,273 L89,286 L100,298 L122,287 L140,306 L161,312 L163,318 L157,348 L197,389 L339,370 L290,266 L242,192 L250,137 L274,102 L257,67 L227,79 L218,101 L192,102 L159,91 L156,71 L144,39 L144,7 L122,0 L110,6 L111,7 L111,6 Z',
+		'Pechersky': 'M27,0 L16,10 L0,42 L0,76 L12,108 L15,125 L49,136 L73,135 L83,113 L112,101 L113,78 L95,69 L77,33 L36,0 L27,0 L19,5 L16,10 L16,11 L16,10 L15,10 L15,11 L16,10 L16,11 Z',
+		'Desnyansky': 'M17,235 L0,192 L0,157 L9,165 L28,166 L32,182 L47,182 L47,167 L29,141 L33,124 L144,139 L217,139 L236,101 L290,73 L291,90 L317,91 L313,36 L331,16 L324,0 L381,22 L405,22 L410,42 L429,38 L434,30 L459,67 L457,151 L401,176 L368,176 L368,188 L362,189 L354,178 L346,188 L359,200 L330,227 L321,231 L323,246 L183,306 L185,327 L196,334 L195,346 L175,355 L164,341 L144,347 L148,333 L133,304 L115,292 L108,275 L115,258 L108,234 L17,235 Z',
+		'Dneprovsky': 'M344,12 L202,73 L206,93 L217,99 L215,112 L196,120 L185,107 L165,113 L169,99 L153,69 L136,59 L129,41 L136,24 L129,0 L37,1 L12,10 L23,26 L24,30 L0,73 L5,96 L16,97 L56,129 L75,166 L94,175 L91,198 L288,129 L359,58 L352,46 L358,27 L355,13 L345,12 L344,12 L345,12 Z',
+		'Darnytsky': 'M291,3 L272,0 L212,62 L15,130 L32,165 L7,202 L0,254 L48,329 L48,299 L67,300 L49,271 L104,264 L107,283 L150,272 L149,287 L191,308 L216,285 L202,258 L215,255 L213,230 L224,220 L267,253 L285,247 L317,252 L304,225 L320,224 L325,217 L315,199 L329,189 L423,214 L431,138 L350,108 L320,79 L321,62 L265,31 L291,22 L291,2 L290,2 Z',
+	};
+	console.log(districts['{{name}}']);
+	document.getElementById('img-container').appendChild(parseSVG(`<path class="district-border" d="${districts['{{name}}']}"></path>`));
+});
 </script>
 </html>
