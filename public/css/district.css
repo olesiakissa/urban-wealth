@@ -5,8 +5,33 @@
     margin-top: 5%;
 }
 
-.problems-blocks {
+#district-info-container{
     width: 100%;
+}
+
+#state, #activity{
+    width: 100%;
+}
+#state-info, #activity-info{
+    width: 100%;
+}
+
+#activity-info, #state-info{
+    order:1;
+    margin:0 auto;
+}
+
+#activity-content, #state-content{
+    order:2;
+    width: 100%;
+    margin-top: 2.5%;
+}
+#activity-btn, #state-btn{
+    margin:0 auto;
+}
+
+#problems-container,#solutions-container, #events-container, #review-container {
+    width:  48%;
 }
 
 .problem-post {
@@ -55,6 +80,14 @@
     cursor: pointer;
     padding: 15px 32px;
     font-family: 'Franklin Gothic Book', serif;
+}
+
+#submit-problem {
+    transform: translate(-50px, 0);
+}
+
+#submit-solution {
+    transform: translate(50px, 0);
 }
 
 .problems-navbar {

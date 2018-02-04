@@ -4,6 +4,7 @@
 @import 'event.css';
 @import 'form.css';
 @import 'modal.css';
+@import 'tab.css';
 
 @font-face {
     font-family: 'EB Garamond';
@@ -29,7 +30,8 @@ html {
 body {
     height: auto;
     min-height: 100%;
-    background: rgb(246, 245, 245);
+    background-color: white;
+    /*background: rgb(246, 245, 245);*/
 }
 
 div, body, section, header, footer {

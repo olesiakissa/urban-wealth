@@ -123,19 +123,25 @@ app.post("/create-problem", jsonParser, function (request, response) {
 });
 
 app.post("/create-solution", jsonParser, function (request, response) {
-    //todo solution
+    response.render('partials/solution.hbs', {
+        solutionTitle: request.body.title,
+        solutionText: request.body.text
+    });
 });
 
 app.post("/create-review", jsonParser, function (request, response) {
-    //todo review
+    response.render('partials/review.hbs', {
+        reviewTitle: request.body.title,
+        reviewText: request.body.text
+    });
 });
 
 app.post("/create-event", jsonParser, function (request, response) {
 	console.log(request.body);
     response.render('partials/event.hbs', {
-        problemTitle: request.body.name,
-        problemText: request.body.text,
-		problemAuthor: request.body.author
+        eventTitle: request.body.title,
+        eventDescription: request.body.description,
+        eventAuthor: request.body.author
     });
 });
 
