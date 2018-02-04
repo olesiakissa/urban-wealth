@@ -94,3 +94,25 @@
 
 }
 /*endregion*/
+
+.graphic_circle {
+  transition: all linear 0.5s -0s;
+}
+
+.graphic_line {
+  fill: transparent;
+  stroke: #000;
+  stroke-linecap: round;
+    stroke-linejoin: round;
+  stroke-width: 2px;
+  transition: all linear 0.5s 0s !important;
+}
+
+.graphic_subline {
+  fill: transparent;
+  stroke: #00000022;
+  stroke-linecap: round;
+    stroke-linejoin: round;
+  stroke-width: 1px;
+  transition: all linear 0.5s 0s;
+}
