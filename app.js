@@ -49,48 +49,63 @@ app.get("/district/:name", function(request, response){
 app.post("/graphic", function (request, response) {
     response.json(
         {
-            keys: ['aaa', 'sss', 'www'],
+            keys: ['01.12.2017', '01.01.2018', '01.02.2018'],
             gradation: [0, 1, 2, 3, 4, 5],
             graphics: [
                 {
-                    name: 'asdasdsa',
-                    color: '#568723',
+                    name: 'Экология',
+                    color: '#16a818',
                     type: 'line',
                     points:
                         [
                             {
-                                color: '#ff0000',
-                                value: 0.7
+                                value: 1.2
                             },
                             {
-                                value: 4.5
+                                value: 1.5
                             },
                             {
-                                color: '#568723',
+                                value: 1.3
+                            }
+                        ]
+                },
+                {
+                    name: 'Преступность',
+                    color: '#ff0000',
+                    type: 'line',
+                    points:
+                        [
+                            {
+                                value: 3.8
+                            },
+                            {
                                 value: 3.3
+                            },
+                            {
+                                value: 3.5
                             }
                         ]
                 },
                 {
-                    name: 'asdasdsa',
-                    color: '#aa3242',
+                    name: 'Администрация',
+                    color: '#e8ae0c',
                     type: 'line',
                     points:
                         [
                             {
-                                value: 4.8
+                                value: 2.8
                             },
                             {
-                                value: 4.0
+                                value: 3.2
                             },
                             {
-                                value: 2.3
+                                value: 3.0
                             }
                         ]
                 },
-                {
-                    name: 'wrwrwrwrw',
-                    color: '#99ee55',
+				{
+                    name: 'Инфраструкрута',
+                    color: '#4ca2a8',
                     type: 'line',
                     points:
                         [
@@ -98,7 +113,7 @@ app.post("/graphic", function (request, response) {
                                 value: 3.0
                             },
                             {
-                                value: 0.2
+                                value: 3.4
                             },
                             {
                                 value: 4.5
