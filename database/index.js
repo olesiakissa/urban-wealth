@@ -96,7 +96,40 @@ module.export.getRatingsOfDistrictByDate = function(district, timeLong){
         {district_id: district.id, date: {$gt: timeLong}}
     );
 };
-//module.exports.getAllInfoSorted = function(district, problem, )
+
+module.exports.getAllInfoSorted = function(){
+  return = db.problem.aggregate([
+{
+    $lookup: {
+            from: "solution",
+            localField: "id",
+            foreignField: "problem_id",
+            as: "solution"
+	}
+},{
+	$lookup: {
+            from: "district",
+            localField: "district_id",
+            foreignField: "id",
+            as: "district"
+	}
+},{
+	$lookup: {
+            from: "review",
+            localField: "district_id",
+            foreignField: "district_id",
+            as: "review"
+	}
+},{
+	$lookup: {
+            from: "rate",
+            localField: "district_id",
+            foreignField: "district_id",
+            as: "rate"
+	}
+}
+])  
+};
 
 module.exports.insertDistrict = function(user){
 	db.user.insert(
