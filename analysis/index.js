@@ -11,30 +11,10 @@ function news (problem, solution) {
 function sumArray(array){
 	let sum = 0;
 	for (let i = 0; i < array.length; i++) {
-		sum += array[i].subategory.value;	
+		sum += array[i].subcategory.value;	
 	};
 	return sum;
 };
-
-var e = {
-	subategory: {
-		value: 5
-	}
-}
-
-var w = {
-	subategory: {
-		value: 3
-	}
-}
-
-var g = {
-	subategory: {
-		value: 8
-	}
-}
-
-console.log(news([w,g], [e]));
 
 function avg(array) {
 	let av1 = 0;
