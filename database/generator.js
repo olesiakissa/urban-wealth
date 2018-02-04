@@ -1,6 +1,6 @@
 var faker = require('faker');
 
-function generateUsers(amount) {
+module.exports.generateUsers = function(amount) {
     var users = [];
     for (let i = 0; i < amount; i++) {
         users.push({
@@ -13,7 +13,7 @@ function generateUsers(amount) {
     return users;
 }
 
-function generateComments(amount, events) {
+module.exports.generateComments = function(amount, events) {
 	
     var min = 1, max = events.length - 1;
     var comments = [];
@@ -29,7 +29,7 @@ function generateComments(amount, events) {
     return comments;
 }
 
-function generateReviews(amount) {
+module.exports.generateReviews = function(amount) {
     var reviews = [];
     for (let i = 0; i < amount; i++) {
         reviews.push({
@@ -42,7 +42,7 @@ function generateReviews(amount) {
     return reviews;
 }
 
-function generateProblems(amount) {
+module.exports.generateProblems = function(amount) {
     var problems = [];
     //id values for categories
     var catmin = 1, catmax = 4;
@@ -64,7 +64,7 @@ function generateProblems(amount) {
     return problems;
 }
 
-function generateSolutions(amount, problems) {
+module.exports.generateSolutions = function(amount, problems) {
     var solutions = [];
     var min = 1, max = problems.length - 1;
 
@@ -81,7 +81,7 @@ function generateSolutions(amount, problems) {
     return solutions;
 }
 
-function generateRates(amount, reviews) {
+module.exports.generateRates = function(amount, reviews) {
     var rates = [];
     var min = 1, evalMax = 5, districtMax = 10, reviewsMax = reviews.length - 1;
 
@@ -101,7 +101,7 @@ function generateRates(amount, reviews) {
     return rates;
 }
 
-function generateEvents(amount, distrivt) {
+module.exports.generateEvents = function(amount) {
     var events = [];
 	var min = 1, districtMax = 10;
     for (let i = 0; i < amount; i++) {
