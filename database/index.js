@@ -15,55 +15,55 @@ module.exports.connectToDb = function (){
 };
 
 module.exports.insertProblem = function(prob){
-	db.problem.insert(
+	db.problem.insertOne(
 		{ id: prob.id, title: prob.title, text: prob.text, date: prob.date, category_id: prob.category_id, subcategory_id: prob.subcategory_id, author: prob.author, district_id: prob.district_id, media: ['2.png']}
 	)
 };
 
 module.exports.insertSolution = function(solut){
-	db.solution.insert(  
+	db.solution.insertOne(  
          { id: solut.id, title: solut.title, text: solut.text, problem_id: solut.problem_id, author: solut.author, media: ['1.png'] }
 	);
 };
 
 module.exports.insertEvent = function(event){
-	db.event.insert(
+	db.event.insertOne(
 		{id: event.id, title: event.title, author: event.author, text: event.text, date: event.date, district_id: event.district_id, attenders: event.attenders}
 	);
 };
 
 module.exports.insertReview = function(rev){
-	db.review.insert(
+	db.review.insertOne(
 		{id: rev.id, title: rev.title, text: rev.text, date: rev.date}
 	);
 };
 
 module.exports.insertComment = function(comm){
-	db.comment.insert(
+	db.comment.insertOne(
          {id: comm.id, author: comm.author, text: comm.text, date: comm.date, event_id: comm.event_id }
 	);
 };
 
 module.exports.insertRate = function(rate){
-	db.rate.insert(
+	db.rate.insertOne(
 		{ id: rate.id, eval: rate.eval, eval_ecology: rate.eval_ecology, eval_administration: rate.eval_administration, eval_infrastructure: rate.eval_infrastructure, eval_criminal: rate.eval_criminal, date: rate.date, district_id: rate.district_id, review_id: rate.review_id }
 	)
 };
 
 module.exports.insertDistrict = function(dist){
-	db.district.insert(
+	db.district.insertOne(
 		{ id: dist.id, name: dist.name, svgpath: dist.svgpath }
 	);
 };
 
 module.exports.insertUser = function(user){
-	db.user.insert(
+	db.user.insertOne(
 		{id: user.id, full_name: user.full_name, email:user.full_name, password:user.full_name }
 	);
 };
 
 module.exports.insertUser = function(user){
-	db.user.insert(
+	db.user.insertOne(
 		{id: user.id, full_name: user.full_name, email:user.full_name, password:user.full_name }
 	);
 };
@@ -132,7 +132,7 @@ module.exports.getAllInfoSorted = function(){
 };
 
 module.exports.insertDistrict = function(user){
-	db.user.insert(
+	db.user.insertOne(
 		{id: 1, name: 'Svyatoshyn', svgpath: 'M118,1 L209,81 L209,122 L258,154 L259,226 L285,228 L286,241 L256,264 L282,320 L306,348 L306,362 L281,381 L225,338 L198,292 L196,262 L181,254 L131,265 L72,247 L63,289 L55,301 L31,287 L12,306 L0,287 L18,265 L2,232 L36,193 L24,183 L33,152 L44,150 L59,110 L43,90 L60,63 L68,64 L93,52 L97,33 L116,32 L117,0 L118,1 Z'},
 		{id: 2, name: 'Obolonsky', svgpath: 'M0,83 L109,180 L163,163 L255,156 L249,178 L253,231 L287,257 L299,258 L321,289 L331,268 L393,268 L383,253 L409,243 L393,203 L392,145 L368,108 L341,104 L325,81 L324,57 L311,56 L307,44 L291,44 L290,35 L274,34 L274,11 L129,0 L127,36 L80,32 L26,40 L55,55 L55,62 L77,69 L78,76 L62,76 L56,102 L28,77 L2,82 Z'},
 		{id: 3, name: 'Podolsky', svgpath: 'M1,-168 L56,-185 L148,-193 L142,-168 L146,-117 L180,-91 L193,-90 L214,-60 L223,-80 L285,-80 L289,-75 L265,-34 L270,-10 L259,0 L92,-51 L50,-77 L49,-97 L0,-128 L1,-168 L1,-169 L2,-169 Z'},

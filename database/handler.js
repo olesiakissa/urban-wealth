@@ -1,5 +1,6 @@
 const generator = require('./generator');
 const db = require('./index');
+db.connectToDb();
 
 var amount = 10;
 
