@@ -13,3 +13,35 @@ module.exports.connectToDb = function (){
         }
     });
 };
+
+module.exports.insertProblem = function(){
+
+};
+
+module.exports.insertSolution = function(){
+
+};
+
+module.exports.insertEvent = function(){
+
+};
+
+module.exports.insertReview = function(){
+
+};
+
+module.exports.insertComment = function(){
+
+};
+
+module.exports.insertRate = function(){
+
+};
+
+module.exports.insertDistrict = function(){
+
+};
+
+module.exports.insertUser = function(){
+
+};

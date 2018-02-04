@@ -17,6 +17,7 @@ $(document).ready(function () {
     //endregion
 
     $('form').submit(function (e) {
+        console.log('start submit');
         e.preventDefault();
         var action = $(this).attr('action');
         var data = {};
