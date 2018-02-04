@@ -111,7 +111,7 @@ app.post("/graphic", function (request, response) {
                                 value: 2.8
                             },
                             {
-                                value: 3.2
+                                value: 3.0
                             },
                             {
                                 value: 3.0
@@ -125,10 +125,10 @@ app.post("/graphic", function (request, response) {
                     points:
                         [
                             {
-                                value: 3.0
+                                value: 3.1
                             },
                             {
-                                value: 3.4
+                                value: 3.5
                             },
                             {
                                 value: 4.5
