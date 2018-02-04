@@ -54,6 +54,10 @@
     height:400px;
 }
 
+.h3-title{
+    text-align: left;
+}
+
 .parameters-item:not(:first-child) {
     margin-top: 10%;
 }

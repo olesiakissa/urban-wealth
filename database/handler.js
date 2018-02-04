@@ -1,15 +1,16 @@
 const generator = require('./generator');
 const db = require('./index');
-db.connectToDb();
-
 var amount = 10;
+var connect = db.connectToDb();
+
 
 function gen(array, func) {
-	for(let i=0; array.length; i++) {
-		func(array[i]);
-	}
+    for (let i = 0; array.length; i++) {
+        func(array[i]);
+    }
 }
 
+db.getAllDistricts();
 var users = generator.generateUsers(amount);
 var reviews = generator.generateReviews(amount);
 var problems = generator.generateProblems(amount);
