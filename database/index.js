@@ -70,62 +70,70 @@ module.exports.insertUser = function(user){
 
 
 module.exports.getAllSubcategoriesOfCategory = function(category){
-    return db.subcategory.find(
+    return db.collection("subcategory").find(
         {category_id: category.id}
-    );
+    ).toArray(function(err, result) {
+    if (err) throw err;
+    console.log(result);
+    db.close();
+  });;
 };
 
 module.exports.getEventsByDistricts = function(district){
-    return db.event.find(
+    return db.collection("event").find(
         {district_id: district.id}
-    );
+    ).toArray(function(err, result) {
+    if (err) throw err;
+    console.log(result);
+    db.close();
+  });;
 };
 
 module.exports.getAllCommentsOfEvent = function(event){
-    return db.comment.find(
+    return db.collection("comment").find(
         {event_id: event.id}
     );
 };
 
 module.exports.getAllDistricts = function(){
-    return db.district.find();
+    return db.collection("district").find();
 };
 
 module.exports.getRatingsOfDistrictByDate = function(district, timeLong){
-    return db.comment.find(
+    return db.collection("rate").find(
         {district_id: district.id, date: {$gt: timeLong}}
     );
 };
 
 module.exports.getAllInfoSorted = function(){
-  return  db.problem.aggregate([
+  return  db.collection("problem").aggregate([
 {
     $lookup: {
-            from: "solution",
-            localField: "id",
-            foreignField: "problem_id",
-            as: "solution"
+            from: 'solution',
+            localField: 'id',
+            foreignField: 'problem_id',
+            as: 'solution'
 	}
 },{
 	$lookup: {
-            from: "district",
-            localField: "district_id",
-            foreignField: "id",
-            as: "district"
+            from: 'district',
+            localField: 'district_id',
+            foreignField: 'id',
+            as: 'district'
 	}
 },{
 	$lookup: {
-            from: "review",
-            localField: "district_id",
-            foreignField: "district_id",
-            as: "review"
+            from: 'review',
+            localField: 'district_id',
+            foreignField: 'district_id',
+            as: 'review'
 	}
 },{
 	$lookup: {
-            from: "rate",
-            localField: "district_id",
-            foreignField: "district_id",
-            as: "rate"
+            from: 'rate',
+            localField: 'district_id',
+            foreignField: 'district_id',
+            as: 'rate'
 	}
 }
 ])  
