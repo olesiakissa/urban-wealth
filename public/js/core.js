@@ -80,24 +80,20 @@ addFormListener($('form'));
     $('#submit-solution').click(function () {
         $('#modal-content').load('../forms/form_solution.html', function() {addFormListener($('form'));});
         modal.css("display", "block");
-		addFormListener($('#modal-content form'));
     });
 
     $('#submit-review').click(function () {
         $('#modal-content').load('../forms/form_review.html', function() {addFormListener($('form'));});
         modal.css("display", "block");
-		addFormListener($('#modal-content form'));
     });
 
     $('#submit-event').click(function () {
         $('#modal-content').load('../forms/form_event.html', function() {addFormListener($('form'));});
         modal.css("display", "block");
-		addFormListener($('#modal-content form'));
     });
 
     $('#close-modal').click(function () {
         modal.css("display", "none");
-		addFormListener($('#modal-content form'));
     });
     //endregion
 

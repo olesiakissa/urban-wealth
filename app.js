@@ -6,6 +6,7 @@ const app = express();
 const jsonParser = bodyParser.json();
 const hbs = require("hbs");
 const analysis = require("./analysis");
+var database = require("./database");
 const crud = require("./crud");
 var dateFormat = require('dateformat');
 app.set('views', __dirname + '/views');
@@ -32,6 +33,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // routing 
 app.get("/", function (request, response) {
+    database.connectToDb();
     response.render('home.hbs', {
         title: 'UrbanWealth'
     });
