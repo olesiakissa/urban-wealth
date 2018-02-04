@@ -13,14 +13,17 @@ function generateUsers(amount) {
     return users;
 }
 
-function generateComments(amount) {
+function generateComments(amount, events) {
+	
+    var min = 1, max = events.length - 1;
     var comments = [];
     for (let i = 0; i < amount; i++) {
         comments.push({
             'id': i+1,
             'author': `${faker.fake("{{name.lastName}} {{name.firstName}}")}`,
             'text': `${faker.fake("{{lorem.text}}")}`,
-            'date': new Date(`${faker.fake("{{date.past}}")}`).getTime()
+            ' ': new Date(`${faker.fake("{{date.past}}")}`).getTime(),
+			'event_id': (Math.floor(Math.random() * (max - min + 1)) + min)
         });
     }
     return comments;
@@ -45,7 +48,7 @@ function generateProblems(amount) {
     var catmin = 1, catmax = 4;
     //id values for subcategories
     var submin = 1, submax = 12;
-
+	var min = 1, districtMax = 10;
     for (let i = 0; i < amount; i++) {
         problems.push({
             'id': i+1,
@@ -54,7 +57,9 @@ function generateProblems(amount) {
             'date': new Date(`${faker.fake("{{date.past}}")}`).getTime(),
             'category_id': (Math.floor(Math.random() * (catmax - catmin + 1)) + catmin),
             'subcategory_id': (Math.floor(Math.random() * (submax - submin + 1)) + submin),
-        });
+			'author': `${faker.fake("{{name.lastName}} {{name.firstName}}")}`,
+			'district_id': (Math.floor(Math.random() * (districtMax - min + 1)) + min)
+		});
     }
     return problems;
 }
@@ -83,6 +88,7 @@ function generateRates(amount, reviews) {
     for (let i = 0; i < amount; i++) {
         rates.push({
             'id': i+1,
+			'eval': parseFloat(Math.random() * (evalMax - min + 1) + min).toFixed(3),
             'eval_ecology': parseFloat(Math.random() * (evalMax - min + 1) + min).toFixed(3),
             'eval_administration': parseFloat(Math.random() * (evalMax - min + 1) + min).toFixed(3),
             'eval_infrastructure': parseFloat(Math.random() * (evalMax - min + 1) + min).toFixed(3),
@@ -95,15 +101,18 @@ function generateRates(amount, reviews) {
     return rates;
 }
 
-function generateEvents(amount) {
+function generateEvents(amount, distrivt) {
     var events = [];
+	var min = 1, districtMax = 10;
     for (let i = 0; i < amount; i++) {
         events.push({
             'id': i+1,
             'title': `${faker.fake("{{lorem.sentence}}")}`,
             'author': `${faker.fake("{{name.lastName}} {{name.firstName}}")}`,
             'text': `${faker.fake("{{lorem.text}}")}`,
-            'date': new Date(`${faker.fake("{{date.past}}")}`).getTime()
+            'date': new Date(`${faker.fake("{{date.past}}")}`).getTime(),
+			'district_id': (Math.floor(Math.random() * (districtMax - min + 1)) + min),
+			'attenders': [`${faker.fake("{{name.lastName}} {{name.firstName}}")}`, `${faker.fake("{{name.lastName}} {{name.firstName}}")}`]
         });
     }
     return events;
