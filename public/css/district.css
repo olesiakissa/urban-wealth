@@ -10,7 +10,6 @@
 }
 
 #state, #activity{
-    /*margin: 5% 0;*/
     width: 100%;
 }
 #state-info, #activity-info{
@@ -81,6 +80,14 @@
     cursor: pointer;
     padding: 15px 32px;
     font-family: 'Franklin Gothic Book', serif;
+}
+
+#submit-problem {
+    transform: translate(-50px, 0);
+}
+
+#submit-solution {
+    transform: translate(50px, 0);
 }
 
 .problems-navbar {
