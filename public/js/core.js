@@ -15,8 +15,10 @@ $(document).ready(function () {
         return false;
     });
     //endregion
-
-    $('form').submit(function (e) {
+	
+function addFormListener (item) {
+	console.log(item);
+    item.submit(function (e) {
         e.preventDefault();
         var action = $(this).attr('action');
         var data = {};
@@ -47,6 +49,9 @@ $(document).ready(function () {
             }
         });
     });
+}
+
+addFormListener($('form'));
 
    /* $('input[type=radio]').change(function () {
         var targetCombobox = $('select[name=subcategory]');
@@ -68,27 +73,31 @@ $(document).ready(function () {
     //region MODAL REGION
     var modal = $('#modal');
     $('#submit-problem').click(function () {
-        $('#modal-content').load('../forms/form_problem.html');
+        $('#modal-content').load('../forms/form_problem.html', function() {addFormListener($('form'));});
         modal.css("display", "block");
     });
 
     $('#submit-solution').click(function () {
-        $('#modal-content').load('../forms/form_solution.html');
+        $('#modal-content').load('../forms/form_solution.html', function() {addFormListener($('form'));});
         modal.css("display", "block");
+		addFormListener($('#modal-content form'));
     });
 
     $('#submit-review').click(function () {
-        $('#modal-content').load('../forms/form_review.html');
+        $('#modal-content').load('../forms/form_review.html', function() {addFormListener($('form'));});
         modal.css("display", "block");
+		addFormListener($('#modal-content form'));
     });
 
     $('#submit-event').click(function () {
-        $('#modal-content').load('../forms/form_event.html');
+        $('#modal-content').load('../forms/form_event.html', function() {addFormListener($('form'));});
         modal.css("display", "block");
+		addFormListener($('#modal-content form'));
     });
 
     $('#close-modal').click(function () {
         modal.css("display", "none");
+		addFormListener($('#modal-content form'));
     });
     //endregion
 

@@ -5,7 +5,8 @@ const bodyParser = require("body-parser");
 const app = express();
 const jsonParser = bodyParser.json();
 const hbs = require("hbs");
-const crud = require(".crud");
+const analysis = require("./analysis");
+const crud = require("./crud");
 var dateFormat = require('dateformat');
 app.set('views', __dirname + '/views');
 app.set("view engine", "hbs");
@@ -35,68 +36,6 @@ app.get("/", function (request, response) {
         title: 'UrbanWealth'
     });
 });
-
-let gdata = ['aaa', 'sss', 'www'];
-let data =
-    {
-        keys: ['aaa', 'sss', 'www'],
-        gradation: [0, 1, 2, 3, 4, 5],
-        graphics: [
-            {
-                name: 'asdasdsa',
-                color: '#568723',
-                type: 'line',
-                points:
-                    [
-                        {
-                            color: '#ff0000',
-                            value: 0.7
-                        },
-                        {
-                            value: 4.5
-                        },
-                        {
-                            color: '#568723',
-                            value: 3.3
-                        }
-                    ]
-            },
-            {
-                name: 'asdasdsa',
-                color: '#aa3242',
-                type: 'line',
-                points:
-                    [
-                        {
-                            value: 4.8
-                        },
-                        {
-                            value: 4.0
-                        },
-                        {
-                            value: 2.3
-                        }
-                    ]
-            },
-            {
-                name: 'wrwrwrwrw',
-                color: '#99ee55',
-                type: 'line',
-                points:
-                    [
-                        {
-                            value: 3.0
-                        },
-                        {
-                            value: 0.2
-                        },
-                        {
-                            value: 4.5
-                        }
-                    ]
-            },
-        ]
-    }
 
 app.get("/district", function (request, response) {
     response.render('district.hbs', {
@@ -190,7 +129,12 @@ app.post("/create-review", jsonParser, function (request, response) {
 });
 
 app.post("/create-event", jsonParser, function (request, response) {
-    //todo event
+	console.log(request.body);
+    response.render('partials/event.hbs', {
+        problemTitle: request.body.name,
+        problemText: request.body.text,
+		problemAuthor: request.body.author
+    });
 });
 
 app.post("/comment", jsonParser, function (request, response) {
