@@ -46,6 +46,9 @@ function addFormListener (item) {
                 else if (appendPosition === "end") {
                     appendDiv.append(data);
                 }
+                if(modal.length!==0 && modal.css("display")==="block"){
+                    modal.css("display","none");
+                }
             }
         });
     });
@@ -97,5 +100,13 @@ addFormListener($('form'));
     });
     //endregion
 
+    $('ul.tabs li').click(function(){
+        var tab_id = $(this).attr('data-tab');
 
+        $('ul.tabs li').removeClass('current');
+        $('.tab-content').removeClass('current');
+
+        $(this).addClass('current');
+        $("#"+tab_id).addClass('current');
+    })
 });

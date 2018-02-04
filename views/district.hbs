@@ -22,16 +22,63 @@
                     src="http://5zvezd.kiev.ua/wp-content/uploads/2011/06/obolonskiy-rayon-kiev.jpg"
                     alt="Region Photo"/></div>
             <svg id="graphics" class="parameters">
-
             </svg>
         </div>
-        <button type="submit" id="submit-problem" class="submit-btn">Сообщить о проблеме</button>
-        <button type="submit" id="submit-solution" class="submit-btn">Сообщить о решении</button>
-        <button type="submit" id="submit-review" class="submit-btn">Добавить отзыв</button>
-        <button type="submit" id="submit-event" class="submit-btn">Добавить событие</button>
         <!--PROBLEMS BLOCK-->
-        <div id="problems-container" class="column center wrap">
-            <nav>
+        <div id="district-info-container" class="column center wrap">
+            <ul class="tabs">
+                <li class="tab-link current" data-tab="state">Состояние</li>
+                <li class="tab-link" data-tab="activity">Активность</li>
+            </ul>
+
+            <div id="state" class="tab-content current">
+                <div id="state-info" class="column space-between align-start">
+                    <div id="state-btn" class="row center space-around">
+                    <button type="submit" id="submit-problem" class="submit-btn">Сообщить о проблеме</button>
+                    <button type="submit" id="submit-solution" class="submit-btn">Сообщить о решении</button>
+                    </div>
+                        <div id="state-content" class="row center space-between">
+                    <div id="problems-container">
+                        <h3>Проблемы</h3>
+                        <hr>
+                        <div id="problems">
+                        </div>
+                    </div>
+                    <div id="solutions-container">
+                        <h3>Решенные проблемы</h3>
+                        <hr>
+                        <div id="solutions">
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div id="activity" class="tab-content">
+                <div id="activity-info" class="column space-between align-start">
+                    <div id="activity-btn" class="row center space-around">
+                        <button type="submit" id="submit-review" class="submit-btn">Добавить отзыв</button>
+                    <button type="submit" id="submit-event" class="submit-btn">Добавить событие</button>
+                    </div>
+                    <div id="activity-content" class="row center space-between">
+                    <div id="review-container">
+                        <h3>Отзывы</h3>
+                        <hr>
+                        <div id="reviews">
+                        </div>
+                    </div>
+                    <div id="events-container">
+                        <h3>События</h3>
+                        <hr>
+                        <div id="events">
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+        </div>
+
+          <!--  <nav>
                 <ul class="center menu">
                     <li><a class="link problems-navbar" href="#">Проблемы</a></li>
                     <li><a class="link problems-navbar" href="#">События</a></li>
@@ -85,7 +132,7 @@
                     </article>
                 </div>
             </div>
-        </div>
+        </div>-->
     </main>
     <hr>
     {{> footer}}

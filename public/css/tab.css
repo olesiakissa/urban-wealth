@@ -1,0 +1,27 @@
+ul.tabs{
+    margin: 5% auto 0 auto;
+    padding: 0;
+    list-style: none;
+}
+ul.tabs li{
+    font-size: 1.3em;
+    background: none;
+    color: #222;
+    display: inline-block;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-weight: 800;
+}
+
+ul.tabs li.current{
+    border-bottom:1px solid green;
+}
+
+.tab-content{
+    display: none;
+    padding: 15px;
+}
+
+.tab-content.current{
+    display: inherit;
+}
