@@ -1,7 +1,8 @@
-const generator = require('./generator');
+// Can't see faker module in generator
+//const generator = require('./generator');
 const db = require('./index');
 var amount = 10;
-var connect = db.connectToDb();
+//var connect = db.connectToDb();
 
 
 function gen(array, func) {
@@ -10,7 +11,10 @@ function gen(array, func) {
     }
 }
 
-db.getAllDistricts();
+// Doesn't work
+db.executeFunc(db.findAllDistricts);
+
+/*
 var users = generator.generateUsers(amount);
 var reviews = generator.generateReviews(amount);
 var problems = generator.generateProblems(amount);
@@ -26,3 +30,4 @@ gen(events, db.insertEvent);
 gen(comments, db.insertComment);
 gen(solutions, db.insertSolution);
 gen(rates, db.insertRate);
+*/

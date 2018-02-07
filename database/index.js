@@ -1,10 +1,77 @@
-const mongodb = require("mongodb");
-const config = require('../config.js');
+const mongodb = require('mongodb').MongoClient;
+const assert = require('assert')
+// Can't see config file
+//const config = require('../config.js');
 
-var url = 'mongodb://' + config.user + ':' + config.password + '@' + config.host +
-    ':' + config.port + '/' + config.db;
+//var url = 'mongodb://' + config.user + ':' + config.password + '@' + config.host +
+//    ':' + config.port + '/' + config.db;
+
+// WORKING PART
+// Insert re-init const objects or arrays of objects
+const dist = new Object({
+        id: 13,
+        name: 'volynsky',
+        svgpath: 'testpath'
+});
+
+const url = "mongodb://localhost:27017";
+const dbName = "urbanwealth";
+
+module.exports.executeFunc = function(funcFind){ 
+    mongodb.connect(url, function (err, client){
+            assert.equal(null, err);
+            console.log("connected to db");
+            const db = client.db(dbName);
+            funcFind(db, function(){
+                client.close();
+    })
+})};
+
+const findAllDistricts = function(db, callback){
+    const collection = db.collection('district');
+    collection.find().toArray(function(err, docs){
+        assert.equal(err, null);
+        console.log(docs)
+        callback(docs);
+    });
+}
+
+const insertDistrict = function (db, callback) {
+    const collection = db.collection('district');
+    collection.insertOne(
+        {id: dist.id, name: dist.name, svgpath: dist.svgpath},
+        //{id: 13, name: 'testname', svgpath: 'testsvgpath'}, 
+        function(err, result) {
+            assert.equal(err, null);
+            assert.equal(1, result.result.n);
+            console.log("Object inserted")
+            callback(result);
+        }
+    );
+};
+
+
+this.executeFunc(findAllDistricts);
+//this.executeFunc(insertDistrict);
+//this.executeFunc(findAllDistricts);
+
+// END OF WORKING PART
 
 module.exports.connectToDb = function() {
+        mongodb.connect(url,function (err, database){
+        if (!err) {
+            console.log('connected');
+            return database.db('urbanwealth');
+            /*console.log(db);
+            db.collection("district").find().toArray(function(err,results){
+                console.log(results);
+                db.close;
+            });*/
+        }
+        else {
+            console.log("error" + err.message);
+        }
+    })
    /* var url = 'mongodb://' + config.user + ':' + config.password + '@' + config.host +
         ':' + config.port + '/' + config.db;
     db = mongodb.connect(url, function (err, database) {
@@ -18,6 +85,60 @@ module.exports.connectToDb = function() {
     });
     db = mongodb;*/
 };
+
+//db = this.connectToDb();
+/*
+function AllDistricts() {
+
+    mongodb.connect(url,function (err, database){
+        if (database) {console.log("error" + err.message);}
+            console.log('connected');
+            //dbMongo = database.db('urbanwealth');
+            /*console.log(db);
+            db.collection("district").find().toArray(function(err,results){
+                console.log(results);
+                db.close;
+            });*/
+ /*           var funcres = database.db("urbanwealth").collection("district").find().toArray(async function(errdb, results){
+                if(!err){
+                    var ret = await results;
+                    database.close;
+            
+                    return ret;
+                }
+                else{
+                    console.log("error" + errdb.message);
+                }
+            }
+            );
+            return funcres;
+        	//db.collection("district").find().toArray();
+           
+        }
+        else {
+            console.log("error" + err.message);
+        }
+    
+})};
+*/
+
+function dbConnect() {
+        db = mongodb.connect('mongodb://localhost:27017/urbanwealth',function (err, database){
+        if (!err) {
+            console.log('connected');
+            //let res = funcQuerry;
+            //return database.db('urbanwealth');
+            /*console.log(db);
+            db.collection("district").find().toArray(function(err,results){
+                console.log(results);
+                db.close;
+            });*/
+        }
+        else {
+            console.log("error" + err.message);
+        }      
+    })};
+
 
 module.exports.insertProblem = function (prob) {
     db.collection("problem").insertOne(
@@ -106,7 +227,7 @@ module.exports.getAllSubcategoriesOfCategory = function (category) {
     return db.collection("subcategory").find(
         {category_id: category.id}
     ).toArray(function (err, result) {
-        if (err) throw err;
+        //if (err) throw err;
         console.log(result);
         db.close();
     });
@@ -116,7 +237,7 @@ module.exports.getEventsByDistricts = function (district) {
     return db.collection("event").find(
         {district_id: district.id}
     ).toArray(function (err, result) {
-        if (err) throw err;
+        //if (err) throw err;
         console.log(result);
         db.close();
     });
@@ -128,9 +249,12 @@ module.exports.getAllCommentsOfEvent = function (event) {
     );
 };
 
-module.exports.getAllDistricts = function () {
+module.exports.getAllDistricts = function (db) {
 
-    return db.collection("district").find();
+    let results = db.collection("district").find().toArray();
+    //db.collection("district").find().toArray();
+    db.close;
+    return results;
 };
 
 module.exports.getRatingsOfDistrictByDate = function (district, timeLong) {
