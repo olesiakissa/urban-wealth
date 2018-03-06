@@ -8,9 +8,9 @@ var url = 'mongodb://' + config.user + ':' + config.password + '@' + config.host
           ':' + config.port + '/?authMecanism=DEFAULT&authSource=' + config.db;
 //          ':' + config.port + '/' + config.db;
 //endregion
-
+:
 //region REFACTOR PART
-// ToDo refactor all get and insert promises and make common funcs
+// ToDo: Refactor all get and insert promises and make common funcs
 // for each type, but still unable to pass object to GET like this
 module.exports.insert = (collectionName, object) => {
     return new Promise((resolve, reject) => {
@@ -97,7 +97,7 @@ module.exports.getRatingsOfDistrictByDate = (district, timeLong) => {
     });
 };
 
-// ToDo Correct query settings
+// ToDo: Correct query settings
 module.exports.getAllInfoSorted = new Promise((resolve, reject) => {
     mongodb.connect(url)
            .then(conn => {
