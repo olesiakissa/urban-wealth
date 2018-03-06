@@ -2,7 +2,7 @@ const generator = require('./generator');
 const db = require('./index');
 var amount = 10;
 
-// ToDo: Rewrite gen func for promises 
+// ToDo: Rewrite gen() func for promises 
 function gen(array, func) {
     for (let i = 0; array.length; i++) {
         func(array[i]);
