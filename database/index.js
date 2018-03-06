@@ -1,5 +1,4 @@
 const mongodb = require('mongodb').MongoClient;
-//const assert = require('assert')
 const config = require('./config.js');
 
 //region CONNECT
@@ -8,7 +7,7 @@ var url = 'mongodb://' + config.user + ':' + config.password + '@' + config.host
           ':' + config.port + '/?authMecanism=DEFAULT&authSource=' + config.db;
 //          ':' + config.port + '/' + config.db;
 //endregion
-:
+
 //region REFACTOR PART
 // ToDo: Refactor all get and insert promises and make common funcs
 // for each type, but still unable to pass object to GET like this
