@@ -20,7 +20,7 @@ module.exports.insert = (collectionName, object) => {
                     conn.close();
                });
                .catch(function(err) {
-                    reject('GET_ERROR');
+                    reject('INSERT_ERROR');
                });
     });
 };
